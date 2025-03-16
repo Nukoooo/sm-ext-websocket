@@ -6,7 +6,7 @@ WebSocketClient::WebSocketClient(const char* url, uint8_t type)
 {
 	m_webSocket = new ix::WebSocket();
 	m_webSocket->setUrl(url);
-	m_webSocket->disableAutomaticReconnection();
+	// m_webSocket->disableAutomaticReconnection();
 	m_callback_type = type;
 
 	m_webSocket->setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg) {
