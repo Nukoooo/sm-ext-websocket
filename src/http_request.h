@@ -30,6 +30,7 @@ public:
 	void SetFollowRedirect(bool follow);
 
 	const std::string& GetResponseHeader(const std::string& key) const;
+	std::string GetHeader(const std::string& key);
 	bool HasResponseHeader(const std::string& key) const;
 	const ix::WebSocketHttpHeaders& GetResponseHeaders() const;
 
