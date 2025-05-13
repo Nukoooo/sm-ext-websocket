@@ -227,7 +227,7 @@ const ix::WebSocketHttpHeaders& HttpRequest::GetResponseHeaders() const
 	return m_responseHeaders; 
 }
 
-std::string HttpRequest::GetHeader()
+std::string HttpRequest::GetHeader(const std::string& key)
 {
 	return m_request->extraHeaders[key];
 }
