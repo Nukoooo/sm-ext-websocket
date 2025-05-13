@@ -226,3 +226,8 @@ const ix::WebSocketHttpHeaders& HttpRequest::GetResponseHeaders() const
 	std::lock_guard<std::mutex> lock(m_headersMutex);
 	return m_responseHeaders; 
 }
+
+std::string HttpRequest::GetHeader()
+{
+	return m_request->extraHeaders[key];
+}

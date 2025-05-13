@@ -239,6 +239,20 @@ static cell_t http_GetResponseHeader(IPluginContext *pContext, const cell_t *par
 	return !value.empty();
 }
 
+static cell_t http_GetHeader(IPluginContext *pContext, const cell_t *params)
+{
+	HttpRequest *pHttpRequest = GetHttpPointer(pContext, params[1]);
+	if (!pHttpRequest) return 0;
+
+	char *key;
+	pContext->LocalToString(params[2], &key);
+	
+	const std::string& value = pHttpRequest->GetHeader(key);
+	pContext->StringToLocalUTF8(params[3], params[4], value.c_str(), nullptr);
+	
+	return !value.empty();
+}
+
 static cell_t http_HasResponseHeader(IPluginContext *pContext, const cell_t *params)
 {
 	HttpRequest *pHttpRequest = GetHttpPointer(pContext, params[1]);
@@ -352,6 +366,7 @@ const sp_nativeinfo_t http_natives[] =
 	{"HttpRequest.SetJsonBody", http_SetJsonBody},
 	{"HttpRequest.AddHeader", http_AddHeader},
 	{"HttpRequest.GetResponseHeader", http_GetResponseHeader},
+	{"HttpRequest.GetHeader", http_GetHeader},
 	{"HttpRequest.HasResponseHeader", http_HasResponseHeader},
 	{"HttpRequest.Timeout.get", http_GetTimeout},
 	{"HttpRequest.Timeout.set", http_SetTimeout},

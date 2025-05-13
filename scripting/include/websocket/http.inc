@@ -116,6 +116,16 @@ methodmap HttpRequest < Handle
   public native bool GetResponseHeader(const char[] key, char[] value, int maxLength);
 
   /**
+  * Get a response header from the HTTP request
+  *
+  * @param key         Header key
+  * @param value       Buffer to store the header value
+  * @param maxLength   Maximum length of the value buffer
+  * @return            True if the header was found, false otherwise
+  */
+  public native bool GetHeader(const char[] key, char[] value, int maxLength);
+
+  /**
   * Check if a response header exists in the HTTP request
   *
   * @param key         Header key
